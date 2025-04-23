@@ -3,9 +3,9 @@ import { renderHook } from "@testing-library/react";
 import { useProductSorting } from "../useProductSorting";
 
 const mockProducts = [
-  { model: "Galaxy S21", price: "799" },
-  { model: "iPhone 13", price: "999" },
-  { model: "Pixel 6", price: "599" },
+  { brand: "Samsung", model: "Galaxy S21", price: "799" },
+  { brand: "Apple", model: "iPhone 13", price: "999" },
+  { brand: "Google", model: "Pixel 6", price: "599" },
 ];
 
 describe("useProductSorting", () => {
@@ -30,9 +30,9 @@ describe("useProductSorting", () => {
     expect(result.current.map((p) => p.price)).toEqual(["999", "799", "599"]);
   });
 
-  it("sorts by model name ascending", () => {
+  it("sorts by model ascending", () => {
     const { result } = renderHook(() =>
-      useProductSorting({ products: mockProducts, sortOption: "name_asc" })
+      useProductSorting({ products: mockProducts, sortOption: "model_asc" })
     );
     expect(result.current.map((p) => p.model)).toEqual([
       "Galaxy S21",
@@ -41,14 +41,36 @@ describe("useProductSorting", () => {
     ]);
   });
 
-  it("sorts by model name descending", () => {
+  it("sorts by model descending", () => {
     const { result } = renderHook(() =>
-      useProductSorting({ products: mockProducts, sortOption: "name_desc" })
+      useProductSorting({ products: mockProducts, sortOption: "model_desc" })
     );
     expect(result.current.map((p) => p.model)).toEqual([
       "Pixel 6",
       "iPhone 13",
       "Galaxy S21",
+    ]);
+  });
+
+  it("sorts by brand ascending", () => {
+    const { result } = renderHook(() =>
+      useProductSorting({ products: mockProducts, sortOption: "brand_asc" })
+    );
+    expect(result.current.map((p) => p.brand)).toEqual([
+      "Apple",
+      "Google",
+      "Samsung",
+    ]);
+  });
+
+  it("sorts by brand descending", () => {
+    const { result } = renderHook(() =>
+      useProductSorting({ products: mockProducts, sortOption: "brand_desc" })
+    );
+    expect(result.current.map((p) => p.brand)).toEqual([
+      "Samsung",
+      "Google",
+      "Apple",
     ]);
   });
 });

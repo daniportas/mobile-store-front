@@ -3,7 +3,7 @@ import { useMemo } from "react";
 /**
  * Sorts the product list according to the selected sort option.
  * @param {Array} products - The filtered list of products.
- * @param {string} sortOption - Selected sorting criteria (price/name ascending/descending).
+ * @param {string} sortOption - Selected sorting criteria (price/name/brand ascending/descending).
  * @returns {Array} Sorted list of products.
  */
 export const useProductSorting = ({ products, sortOption }) => {
@@ -17,11 +17,17 @@ export const useProductSorting = ({ products, sortOption }) => {
       case "price_desc":
         sorted.sort((a, b) => Number(b.price) - Number(a.price));
         break;
-      case "name_asc":
+      case "model_asc":
         sorted.sort((a, b) => a.model.localeCompare(b.model));
         break;
-      case "name_desc":
+      case "model_desc":
         sorted.sort((a, b) => b.model.localeCompare(a.model));
+        break;
+      case "brand_asc":
+        sorted.sort((a, b) => a.brand.localeCompare(b.brand));
+        break;
+      case "brand_desc":
+        sorted.sort((a, b) => b.brand.localeCompare(a.brand));
         break;
       default:
         break; // No sorting applied
