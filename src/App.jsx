@@ -1,9 +1,16 @@
 import React from "react";
+import AppRoutes from "./routes/AppRoutes";
+import Header from "./components/Header";
 
 const App = () => {
   return (
     <>
-      REACT APP
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 p-4 pt-25">
+          <AppRoutes />
+        </main>
+      </div>
     </>
   );
 };
