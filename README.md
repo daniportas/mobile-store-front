@@ -102,7 +102,7 @@ Se ha optado por una **arquitectura por capas** con separación de responsabilid
 **Patrones usados**:
 
 - Container/Presentational
-- Custom Hooks (por implementar)
+- Custom Hooks
 - Principios **SOLID**, especialmente SRP y OCP.
 
 ---
