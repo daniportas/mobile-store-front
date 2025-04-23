@@ -22,6 +22,7 @@ const ProductList = () => {
     error,
     totalItems,
     perPage,
+    setPerPage,
   } = useFilteredProducts();
 
   if (loading) return <Spinner />;
@@ -46,6 +47,7 @@ const ProductList = () => {
         setCurrentPage={setCurrentPage}
         perPage={perPage}
         totalItems={totalItems}
+        onPerPageChange={setPerPage}
       />
     </div>
   );

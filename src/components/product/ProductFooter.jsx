@@ -7,6 +7,7 @@ const ProductFooter = ({
   setCurrentPage,
   perPage,
   totalItems,
+  onPerPageChange,
 }) => {
   return (
     <div className="mt-10">
@@ -16,6 +17,8 @@ const ProductFooter = ({
         onChange={setCurrentPage}
         perPage={perPage}
         totalItems={totalItems}
+        setCurrentPage={setCurrentPage}
+        onPerPageChange={onPerPageChange}
       />
     </div>
   );

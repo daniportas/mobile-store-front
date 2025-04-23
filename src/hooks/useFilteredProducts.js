@@ -23,6 +23,7 @@ export const useFilteredProducts = () => {
   const [brandFilter, setBrandFilter] = useState(""); // Selected brand to filter by
   const [sortOption, setSortOption] = useState(""); // Selected sort option
   const [currentPage, setCurrentPage] = useState(1); // Current pagination page
+  const [perPage, setPerPage] = useState(20);
 
   // Loading and error states for the API call
   const [loading, setLoading] = useState(true);
@@ -40,20 +41,18 @@ export const useFilteredProducts = () => {
   // Reset to first page when search or brand filter changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, brandFilter]);
+  }, [search, brandFilter, perPage]);
 
   // Derived data using custom hooks
   const filtered = useProductFiltering({ products, search, brandFilter }); // Filtered products
   const sorted = useProductSorting({ products: filtered, sortOption }); // Sorted products
-  const currentItems = usePaginatedProducts({
-    // Paginated result
-    products: sorted,
-    currentPage,
-    perPage: ITEMS_PER_PAGE,
-  });
   const brands = useProductBrands(products); // List of unique brands
   const totalPages = Math.ceil(sorted.length / ITEMS_PER_PAGE); // Total pages available
-
+  const currentItems = usePaginatedProducts({
+    products: sorted,
+    currentPage,
+    perPage,
+  });
   // Return state and derived values to be consumed in the component
   return {
     currentItems, // Products to display on current page
@@ -70,6 +69,7 @@ export const useFilteredProducts = () => {
     loading,
     error,
     totalItems: sorted.length, // Used for showing total number of filtered/sorted products
-    perPage: ITEMS_PER_PAGE, // Products per page constant
+    perPage, // Products per page constant
+    setPerPage,
   };
 };
