@@ -9,14 +9,14 @@ import React from "react";
   ];
 
 const ProductTabs = ({ activeTab, setActiveTab }) => (
-  <div className="flex gap-4 mb-4 border-b pb-1">
-    {tabs?.map((tab) => (
+  <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 mb-4 border-b pb-1">
+    {tabs.map((tab) => (
       <button
         key={tab.id}
-        className={`cursor-pointer pb-1 text-sm font-medium transition-colors ${
+        className={`cursor-pointer text-sm font-medium transition-colors ${
           activeTab === tab.id
-            ? "text-blue-600"
-            : "border-transparent text-gray-600 hover:text-blue-600"
+            ? "text-blue-600 border-b-2 border-blue-600"
+            : "text-gray-600 hover:text-blue-600"
         }`}
         onClick={() => setActiveTab(tab.id)}
       >
