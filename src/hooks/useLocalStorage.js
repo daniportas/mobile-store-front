@@ -49,7 +49,7 @@ export const useLocalStorage = (key, initialValue) => {
 
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
-  }, [key]);
+  }, [key, initialValue]);
 
   return [storedValue, setValue];
 };

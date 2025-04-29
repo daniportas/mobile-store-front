@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import { useProduct } from "../../context/ProductContext";
+import { useProduct } from "../../hooks/useProduct";
 
 const Breadcrumb = () => {
   const location = useLocation();

@@ -1,9 +1,9 @@
 import React from "react";
 import AppRoutes from "./routes/AppRoutes";
 import Header from "./components/layout/Header";
-import { CartProvider } from "./context/CartContext";
-import { ProductProvider } from "./context/ProductContext";
 import { Toaster } from "react-hot-toast";
+import { CartProvider } from "./context/CartProvider";
+import { ProductProvider } from "./context/ProductProvider";
 
 const App = () => {
   return (

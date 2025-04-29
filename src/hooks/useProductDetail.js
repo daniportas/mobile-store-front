@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchProductDetail, postAddToCart } from "../api/products";
 import { toast } from "react-hot-toast";
-import { useCart } from "../context/CartContext";
-import { useProduct } from "../context/ProductContext";
+import { useCart } from "./useCart";
+import { useProduct } from "./useProduct";
 
 /**
  * Custom hook to handle product detail logic:
@@ -37,17 +37,17 @@ const useProductDetail = (productId) => {
 
     fetchProductDetail(productId)
       .then((data) => {
-        setProduct(data); // Save locally
-        setSharedProduct(data); // Share via context
-        setSelectedColor(data.options.colors[0]?.code || null); // Select default color
-        setSelectedStorage(data.options.storages[0]?.code || null); // Select default storage
+        setProduct(data);
+        setSharedProduct(data);
+        setSelectedColor(data.options.colors[0]?.code || null);
+        setSelectedStorage(data.options.storages[0]?.code || null);
       })
       .catch((err) => {
         console.error(err);
         setError("Error al cargar el producto");
       })
       .finally(() => setLoading(false));
-  }, [productId]);
+  }, [productId, setSharedProduct]);
 
   // Add product to cart with selected options
   const handleAddToCart = async () => {
